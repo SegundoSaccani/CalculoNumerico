@@ -1,16 +1,10 @@
-function [x] = sust_adelante(A)
-
+function [x] = sust_adelante_vect(A)
   n = rows(A);
   x = zeros(n,1);
 
   x(1) = A(1,n+1)/A(1,1);
 
-  for i = 2 : n
-    s = A(i,n+1);
-    for j = 1 : i-1
-      s = s - A(i,j) * x(j);
-    endfor
-    x(i) = s/A(i,i);
+  for i = 2:n
+    x(i) = ( A(i,n+1) - (  A(i,1 : i-1) * x(1 : i-1)) )/A(i,i);
   endfor
-
   endfunction

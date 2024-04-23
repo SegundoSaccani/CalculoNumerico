@@ -19,4 +19,6 @@ function [A,r] = doolittle_p(A)
         A(r(k+1:n),k) = m;
         A(r(k+1:n),k+1:n) = A(r(k+1:n),k+1:n) - m * A(r(k),k+1:n);
     endfor
+
 endfunction
+#para utilizar A en la factorizacionLU_p antes tengo que reordenarla segun el vector r
