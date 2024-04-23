@@ -1,4 +1,4 @@
-function [A] = doolittle_vect(A)
+function [A] = doolittle(A)
     n = rows(A);
     for k = 1:n-1
         m = A(k+1:n,k)/A(k,k);

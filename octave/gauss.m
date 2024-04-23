@@ -1,4 +1,4 @@
-function [x] = gauss_vect(A,b)
+function [x] = gauss(A,b)
 
   n = length(b);
   A = [A b];

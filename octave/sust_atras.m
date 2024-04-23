@@ -1,5 +1,5 @@
 
-function x=sust_atras_vect(A)
+function x=sust_atras(A)
 
 x=A(:,end);
 n=length(x);

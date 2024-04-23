@@ -1,4 +1,4 @@
-function [x] = sust_atras(A)
+function [x] = sust_atras_sinvect(A)
   n = rows(A);
   x = zeros(n,1);
 

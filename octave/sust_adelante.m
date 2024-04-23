@@ -1,4 +1,4 @@
-function [x] = sust_adelante_vect(A)
+function [x] = sust_adelante(A)
   n = rows(A);
   x = zeros(n,1);
 

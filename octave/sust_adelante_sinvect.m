@@ -1,4 +1,4 @@
-function [x] = sust_adelante(A)
+function [x] = sust_adelante_sinvect(A)
 
   n = rows(A);
   x = zeros(n,1);
