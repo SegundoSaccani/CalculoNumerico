@@ -3,6 +3,6 @@ function [x] = factorizacionLU(A,b)
   n = length(b);
   L = tril(A,-1)+diag(ones(n,1),n,n);
   U = triu(A);
-  y =sust_adelante_vect([L b]);
-  x =sust_atras_vect([U y]);
+  y =sust_adelante([L b]);
+  x =sust_atras([U y]);
   endfunction

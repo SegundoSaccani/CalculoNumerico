@@ -13,6 +13,6 @@ function [x] = gauss(A,b)
     display("No tiene solucion unica")
   endif
 
-  x = sust_atras_vect(A);
+  x = sust_atras(A);
 
 endfunction
