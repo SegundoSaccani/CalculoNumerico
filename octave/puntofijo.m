@@ -8,7 +8,7 @@ function [p,h] = puntofijo(g,p0,kmax,tol)
   if(criterio<tol)
     break
   endif
-  h = [h;criterio];
+  h = [h;criterio];#me pide esto cuando me dice q calcule la convergencia?
 
   p0=p;
   i=i+1;

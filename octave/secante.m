@@ -11,7 +11,7 @@ function [p,h] = secante(f,p0,p1,kmax,tol)
   if(criterio<tol)
     break
   endif
-  h=[h;criterio];
+  h=[h;criterio];#me pide esto cuando me dice q calcule la convergencia?
 
   p0=p1;
   q0=q1;

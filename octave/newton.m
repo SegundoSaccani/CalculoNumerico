@@ -9,7 +9,7 @@
   if(criterio<tol)
     break
   endif
-  h=[h;criterio];
+  h=[h;criterio];#me pide esto cuando me dice q calcule la convergencia?
 
   x0=x;
   i=i+1;
