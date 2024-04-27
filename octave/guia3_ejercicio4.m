@@ -29,11 +29,11 @@ radioE_GS = max(abs(eig(TGS)))
 
 #comparacion SOR Y GS
 tic
-[xSor,itSor,r_hsor] = sor(A,b,[1;1;1;1],100,10e-5,wOPT)
+[xSor,itSor,r_hsor] = sor(A,b,[1;1;1;1],100,1e-5,wOPT)
 tSor = toc()
 
 tic
-[xGS,itGS,r_hGS] = gaussseidel(A,b,[1;1;1;1],100,10e-5)
+[xGS,itGS,r_hGS] = gaussseidel(A,b,[1;1;1;1],100,1e-5)
 tGS = toc()
 
 disp("SOR con w optimizado es")

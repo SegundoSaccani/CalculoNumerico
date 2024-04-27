@@ -13,25 +13,25 @@ A_definida_postiva = z'*A*z > 0 #---> = 1 significa q A es definida positiva por
 
 disp("Jacobi")
 tic
-[x_j,it_j,rh_j] = jacobi(A,b,ones(n,1),200,10e-5);
+[x_j,it_j,rh_j] = jacobi(A,b,ones(n,1),200,1e-5);
 it_j
 tJ=toc()
 
 
 disp("GaussSeidel")
 tic
-[x_gs,it_gs,rh_gs] = gaussseidel(A,b,ones(n,1),200,10e-5);
+[x_gs,it_gs,rh_gs] = gaussseidel(A,b,ones(n,1),200,1e-5);
 it_gs
 tGS=toc()
 
 
 disp("SOR")
 w = 0.1;
-[x_sor,it_sor,rh_sor] = sor(A,b,ones(n,1),200,10e-5,w);
+[x_sor,it_sor,rh_sor] = sor(A,b,ones(n,1),200,1e-5,w);
 
 for i=2:19
   w_i = i*0.1;
-  [x_i,it_i,rh_i] = sor(A,b,ones(n,1),200,10e-5,w_i);
+  [x_i,it_i,rh_i] = sor(A,b,ones(n,1),200,1e-5,w_i);
   if(it_i<it_sor)
     w = w_i;
     it_sor = it_i;
@@ -43,7 +43,7 @@ disp("El w optimo es")
 w
 
 tic
-[x_sor,it_sor,rh_sor] = sor(A,b,ones(n,1),200,10e-5,w);
+[x_sor,it_sor,rh_sor] = sor(A,b,ones(n,1),200,1e-5,w);
 it_sor
 tSor = toc()
 
