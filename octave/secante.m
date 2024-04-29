@@ -1,26 +1,27 @@
-function [p,h] = secante(f,p0,p1,kmax,tol)
- i=2;
+function [p,h,it,t] = secante(f,p0,p1,kmax,tol)
+ tic();
+ it=2;
  h=[];
  q0 = f(p0);
  q1 = f(p1);
 
- while(i<kmax)
+ while(it<kmax)
   p = p1 - (q1*(p1-p0))/(q1-q0);
 
   criterio = abs(p-p1);
+  h=[h;criterio];
   if(criterio<tol)
     break
   endif
-  h=[h;criterio];#me pide esto cuando me dice q calcule la convergencia?
 
   p0=p1;
   q0=q1;
   p1=p;
   q1=f(p);
-
-  i=i+1;
+  it=it+1;
  endwhile
 
- if(i == kmax)
+ if(it == kmax)
   disp("Se llego al maximo numero de iteraciones")
 endif
+t=toc();

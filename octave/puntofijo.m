@@ -1,19 +1,21 @@
-function [p,h] = puntofijo(g,p0,kmax,tol)
+function [p,h,it,t] = puntofijo(g,p0,kmax,tol)
+  tic();
   h=[];
-  i=1;
-  while(i<kmax)
+  it=1;
+  while(it<kmax)
   p = g(p0);
 
   criterio = abs(p-p0);
+  h = [h;criterio];
   if(criterio<tol)
     break
   endif
-  h = [h;criterio];#me pide esto cuando me dice q calcule la convergencia?
 
   p0=p;
-  i=i+1;
+  it=it+1;
 endwhile
 
-if(i == kmax)
+if(it == kmax)
   disp("Se llego al maximo numero de iteraciones")
 endif
+t = toc();

@@ -1,20 +1,22 @@
- function [x,h] = newton(f,df,x0,kmax,tol)
- i=1;
+ function [x,h,it,t] = newton(f,df,x0,kmax,tol)
+ tic();
+ it=1;
  h=[];
 
- while(i<kmax)
+ while(it<kmax)
   x = x0 - f(x0)/df(x0);
 
   criterio = abs(x-x0);
+  h=[h;criterio];
   if(criterio<tol)
     break
   endif
-  h=[h;criterio];#me pide esto cuando me dice q calcule la convergencia?
 
   x0=x;
-  i=i+1;
+  it=it+1;
 endwhile
 
-if(i == kmax)
+if(it == kmax)
   disp("Se llego al maximo numero de iteraciones")
 endif
+t=toc();

@@ -1,30 +1,32 @@
-function [x,h] = biseccion(f,a,b,kmax,tol)
-
+function [x,h,it,t] = biseccion(f,a,b,kmax,tol)
+tic();
 if(f(a)*f(b)>0)
-  disp("f(a) y f(b) no tienen signos opuestos")
+  error("f(a) y f(b) no tienen signos opuestos")
 endif
 
-h=[]; ###################
+h=[];
 
-i = 1;
-while(i<kmax)
+it = 1;
+while(it<kmax)
+
   x = a +((b-a)/2);
 
   criterio=(b-a)/2;
+  h = [h;criterio];
   if(criterio<tol)
     break
   endif
-  i=i+1;
+
   if(f(a)*f(x)>0)
     a = x;
   else
     b = x;
   endif
-
-  h = [h;criterio]; #me pide esto cuando me dice q calcule la convergencia?
+  it=it+1;
 
 endwhile
 
-if(i == kmax)
+if(it == kmax)
   disp("Se llego al maximo numero de iteraciones")
 endif
+t=toc();
