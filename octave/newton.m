@@ -6,7 +6,9 @@
  while(it<kmax)
   x = x0 - f(x0)/df(x0);
 
-  criterio = abs(x-x0);
+  criterio = abs(x-x0)/abs(x);
+  #abs(x-x0)/abs(x)
+  #abs(x-x0)
   h=[h;criterio];
   if(criterio<tol)
     break
