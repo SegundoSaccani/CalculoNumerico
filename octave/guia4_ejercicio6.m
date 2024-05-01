@@ -13,7 +13,7 @@ vspace = linspace(-10,10,1000);
 plot(vspace,f(vspace))
 grid on;
 
-[xp,hb,itb] = biseccion(f,-1,1,100,1e-5)
+[xp,hb,itb] = biseccion(f,-1,1,100,1e-7)
 [V,h,it,t] = newton(f,df,xp,100,1e-12)
 
 disp("El volumen que ocupan es ")
