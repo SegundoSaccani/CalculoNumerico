@@ -13,7 +13,10 @@ b(1) = (h^2).*20.*e.^(-10.* (h-0.7)^2)  +5;
 b(n-2) = (h^2).*20.*e.^(-10.* (1-h-0.7)^2 ) +6;
 b = b';
 
-[x,it] = gaussseidel(A,b,zeros(n-2,1),2000,1e-6);
+[x,it,h] = gaussseidel(A,b,zeros(n-2,1),2000,1e-6);
 it
 x(20)
+
+semilogy(h)
+title("Convergencia de Gauss Seidel")
 
