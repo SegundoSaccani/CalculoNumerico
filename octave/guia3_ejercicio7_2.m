@@ -16,7 +16,7 @@ definida_positva = z'*A*z>0
 #Metodos
 disp("\nJacobi")
 tic
-[x_j,it_j,rh_j] = jacobi(A,b,ones(n,1),200,1e-5);
+[x_j,it_j,rh_j] = jacobi(A,b,ones(n,1),2000,1e-5);
 it_j
 tJ=toc()
 

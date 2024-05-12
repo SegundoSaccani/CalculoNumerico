@@ -12,11 +12,13 @@ tol = 1e-5;
 figure(1)
 xspace=linspace(0,10,2000);
 plot(xspace,E(xspace))
-grid on;
+grid minor;
+title("E(t)")
 
 figure(2)
 plot(xspace,dE(xspace))
-grid on;
+title("Derivada E'(t)")
+grid minor;
 
 disp("a)")############################################
 disp("\nRaiz 1")

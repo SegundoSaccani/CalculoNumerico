@@ -3,6 +3,9 @@ function [x,it,r_h] = gaussseidel(A,b,x0,maxit,tol)
   it=0;
   r_h=[];
   x=x0;
+
+  # Tgs = -inv(D + L) * U
+
   while(it<maxit)
     it=it+1;
     for i=1:n
@@ -10,8 +13,8 @@ function [x,it,r_h] = gaussseidel(A,b,x0,maxit,tol)
     endfor
 
 #    err=norm(b-A*x,inf);
-
     err=norm(x-x0,inf)/norm(x,inf);
+
     r_h = [r_h;err];
     if(err<tol)
       break
