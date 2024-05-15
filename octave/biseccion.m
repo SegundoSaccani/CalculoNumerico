@@ -12,7 +12,7 @@ while(it<kmax)
   x = a +((b-a)/2);
 
   criterio= abs(x-a);
-  #(b-a)/2
+  #criterio = (b-a)/2;
   h = [h;criterio];
   if(criterio<tol)
     break
