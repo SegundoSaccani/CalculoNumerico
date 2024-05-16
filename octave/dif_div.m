@@ -11,7 +11,7 @@
      endfor
    endfor
 
-  c = M(1,:);
+  c = M(1,2:end);
 
   M
 

@@ -1,4 +1,4 @@
-function  [a,b,c,d]=cubic_spline_natural(x,f)
+function [a,b,c,d]=cubic_spline_natural(x,f)
 
   n = length(x);
 
