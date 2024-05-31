@@ -1,32 +1,55 @@
-function [a,b,c,d]=cubic_spline_clamped(x,f,df1,df2)
+function[a,b,c,d] = cubic_spline_clamped(x,y,dy0,dyn)
+  # Pasamos un arreglo de puntos x e y
+  # Es una funcion para el calculo de una Spline Cubica sujeta, es decir con
+  # derialphaadas primeras dadas en los extremos (dy0 y dyn)
+  # programado en base a Burden Edición 10 pag 115.
+  # S(x) = Sj(x) = aj + bj(x-xj) + cj(x-xj)^2 + dj(x-xj)^3 para xj <= x <= xj+1;
+  # S'(x1) = dy0  , S'(xn+1)=dyn
 
+  x = x';
+  y = y';
+  % Medimos la longitud de los datos
   n = length(x);
+  alpha = zeros(n,1);
 
-  h = x(2:n)-x(1:n-1);
-  a = f;
+  % Paso 1: Calculamos los h de cada Spline.
+  h(1:n-1) = x(2:n)-x(1:n-1);
 
-  M = zeros(n,n);
-  M(1,1) = 2*h(1);
-  M(n,n) = 2*h(end);
-  M(1,2) = h(1);
-  M(n,n-1) = h(end);
+  % Paso 2 y 3: Calcula los terminos independientes (alpha)
+  alpha(1) = 3*((y(2)-y(1))/h(1)-dy0);
+  alpha(2:n-1) = 3*((y(3:n)-y(2:n-1))./h(2:n-1)-(y(2:n-1)-y(1:n-2))./h(1:n-2));
+  alpha(n) = 3*(dyn-(y(n)-y(n-1))/h(n-1));
+
+# de aca en adelante resolalphaemos un sistema lineal tridiagonal utilizando un método
+# que alphaimos en Métodos Directos, Crout optimizado para matrices tridiagonales.
+# acordarse que tenemos base 1.
+
+  % Paso 4:
+  l(1) = 2*h(1);
+  u(1) = 0.5;
+  z(1) = alpha(1)/l(1);
+
+  % Paso 5:
   for i = 2:n-1
-    M(i,i) = 2*(h(i-1)+h(i));
-    M(i,i+1)= h(i);
-    M(i,i-1)= h(i-1);
+    l(i) = 2 * ( x(i+1)-x(i-1) ) - h(i-1) * u(i-1);
+    u(i) = h(i) / l(i);
+    z(i) = (alpha(i) - h(i-1) * z(i-1) ) / l(i);
   endfor
 
-  M;
+  %Paso 6:
+  l(n) = h(n-1) * (2-u(n-1));
+  z(n) = (alpha(n) - h(n-1)*z(n-1) ) / l(n);
+  c(n) = z(n);
 
-  B = (3./h((2:length(h)))).*(a(3:length(a))-a(2:length(a)-1))-(3./h((1:length(h)-1))).*(a(2:length(a)-1)-a(1:length(a)-2));
-  B = [ -3*df1 + (3/h(1))*(a(2)-a(1)) ; B ;3*df2 - (3/h(n-1))*(a(n)-a(n-1))];
+  % Paso 7:
+  for i = n-1:-1:1
+    c(i) = z(i) - u(i) * c(i+1);
+    b(i) = (y(i+1)-y(i))/ h(i) - h(i) * ( c(i+1) + 2 * c(i) ) / 3;
+    d(i) = (c(i+1)-c(i))/(3*h(i));
+  endfor
 
-  [c] = gauss(M,B);
-
-
-  b= (1./h).*(a(2:length(a)) - a(1:length(a)-1)) - (h./3).*(2.*c(1:length(c)-1)+ c(2:length(c)));
-  d = (c(2:length(c)) - c(1:length(c)-1))./3 .* h;
-  a = a(1:n-1);
-  c = c(1:n-1);
-
-  endfunction
+  a = y(1:n-1)';
+  b = b';
+  c = c(1:n-1)';
+  d = d';
+endfunction
