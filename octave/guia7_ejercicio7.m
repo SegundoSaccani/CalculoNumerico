@@ -16,6 +16,7 @@ plot(x1,x2)
 
 
 #A partir de q momento la distancia de la particula es menor a (0.01) al atractor (0,0)
+momento = -1;
 for i = 1 : rows(x1)
 dist = sqrt( (x1(i))^2+ (x2(i))^2 );
 

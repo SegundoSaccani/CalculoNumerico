@@ -1,4 +1,6 @@
 function[a,b,c,d] = cubic_spline_clamped(x,y,dy0,dyn)
+ #Acepta vectores fila para x e y
+
   # Pasamos un arreglo de puntos x e y
   # Es una funcion para el calculo de una Spline Cubica sujeta, es decir con
   # derialphaadas primeras dadas en los extremos (dy0 y dyn)

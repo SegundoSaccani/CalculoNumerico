@@ -6,7 +6,7 @@ x = [-1 0 1 2];
 y = [-1.1 -0.4 -0.9 -2.7];
 
 
-cL = polyfit(x,log(-y),length(x)-1)
+cL = polyfit(x,log(-y),2)
 
 pL = @(x) polyval(cL,x)
 

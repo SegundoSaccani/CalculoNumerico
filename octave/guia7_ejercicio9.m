@@ -19,7 +19,7 @@ F = @(t,u) [u(2);u(3); -4*sin(t)-2*cos(t)-4*u(3)-5*u(2)-2*u(1)];
 L=1
 [t,Y] = rk4(F,[0 2.5],y0,L);
 y_ant = Y(end,1)
-while(1)
+while(1) #si rk4 no converge entonces es un loop infinito
 L = L*2
 [t,Y] = rk4(F,[0 2.5],y0,L);
 y_act = Y(end,1)

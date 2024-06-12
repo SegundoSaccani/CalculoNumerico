@@ -1,4 +1,6 @@
 function [a,b,c,d] = cubic_spline_natural(x,y)
+   #Acepta vectores fila para x e y
+
   # Pasamos un arreglo de puntos x e y
   # Es una función para el calculo de una Spline Cúbica Natural, es decir con
   # derivadas segundas nulas en el contorno del dominio.

@@ -1,5 +1,5 @@
 function [S,dS,ddS]=funcion_spline(x1,y1,df1,df2)
-
+ #Acepta vectores fila para x e y
 if (nargin==2)
   [a,b,c,d] = cubic_spline_natural(x1,y1);
   dS= @(x) b(1)*(x==x1(1));
