@@ -1,8 +1,9 @@
-function [I] = trapcomp(x,y)
-#ESTA FUNCION SUPONE QUE LOS X ESTAN IGUALMENTE ESPACIADOS (si no lo estuvieran toma puntos del polinomio interpolante)
-f = @(t) polyval(polyfit(x,y,length(x)-1),t);
-
-L=length(x)-1;
-
-I = intNCcompuesta(f,x(1),x(end),L,2);
+function Q = trapcomp(x,y)
+  n = length(x);
+  Q = 0;
+  for i = 1:n-1
+    h = x(i+1)- x(i);
+    Q+= h*(y(i+1)+y(i));
+  endfor
+  Q = Q/2;
 endfunction
